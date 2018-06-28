@@ -14,7 +14,7 @@ Goals / steps of this project:
 [image3]: ./slidingWindows.png
 [image4]: ./slidingWindows.jpg
 [image5]: ./heatmap.png
-[video1]: ./project_video_output.mp4
+[video1]: ./test_video_0.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -151,11 +151,11 @@ print(round(time.time() -t, 2 ), "Seconds to train SVC...")
 
 print('Test accuracy of SVC = ', round(svc.score(X_test, y_test), 4))
 ```
-`221.21797585487366 Seconds to compute features...
-Using :  9 Orientations, 8 Pixels per cell 2 Cells per block 32 Histogram bins, and (32, 32) Spatial sampling
-Feature vector length :  8460
-83.67 Seconds to train SVC...
-Test accuracy of SVC =  0.9955`
+`221.21797585487366 Seconds to compute features...`
+`Using :  9 Orientations, 8 Pixels per cell 2 Cells per block 32 Histogram bins, and (32, 32) Spatial sampling`
+`Feature vector length :  8460`
+`83.67 Seconds to train SVC...`
+`Test accuracy of SVC =  0.9955`
 
 ### Sliding Window Search
 
