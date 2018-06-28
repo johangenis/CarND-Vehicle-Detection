@@ -14,8 +14,6 @@ Goals / steps of this project:
 [image3]: ./slidingWindows.png
 [image4]: ./slidingWindows.jpg
 [image5]: ./heatmap.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
 [video1]: ./project_video_output.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -65,7 +63,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
 ![alt text][image2]
@@ -153,11 +151,11 @@ print(round(time.time() -t, 2 ), "Seconds to train SVC...")
 
 print('Test accuracy of SVC = ', round(svc.score(X_test, y_test), 4))
 ```
-221.21797585487366 Seconds to compute features...
+`221.21797585487366 Seconds to compute features...
 Using :  9 Orientations, 8 Pixels per cell 2 Cells per block 32 Histogram bins, and (32, 32) Spatial sampling
 Feature vector length :  8460
 83.67 Seconds to train SVC...
-Test accuracy of SVC =  0.9955
+Test accuracy of SVC =  0.9955`
 
 ### Sliding Window Search
 
@@ -210,7 +208,7 @@ for img_src in example_images:
 fig = plt.figure(figsize=(12,18), dpi=300)
 visualize(fig,5,2,images,titles)
 ```
-4.681360960006714 seconds to process one image searching 273  windows
+`4.681360960006714 seconds to process one image searching 273  windows
 0.0 1.0
 2.67714786529541 seconds to process one image searching 273  windows
 0.0 1.0
@@ -220,7 +218,7 @@ visualize(fig,5,2,images,titles)
 0.0 1.0
 4.27184796333313 seconds to process one image searching 273  windows
 0.0 1.0
-2.8198859691619873 seconds to process one image searching 273  windows
+2.8198859691619873 seconds to process one image searching 273  windows`
 
 
 
@@ -236,6 +234,7 @@ Using YCrCb 3-channel HOG features plus spatially binned color and histograms of
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+
 Here's a [link to my video result](./project_video_output.mp4)
 
 
@@ -263,38 +262,29 @@ def draw_labeled_bboxes(img, labels):
     return img
 ```
 
-Did you apply thresholding in order to improve on the performance of the classifier?
-I applied the a threshold using the code below, taken from stage 35 of the course.
+Thresholding was applied using the code below, at cell 23 of the accompanying Jupyter Notebook. The threshold was set to 0.
 
-Inside the process image function. I ended up setting this to 0 and just narrowing down the region.
-
-....
-heat_map = apply_threshold(heat_map, 0)
-....
-The method is defined in cell 33.
-
+```
 def apply_threshold(heatmap, threshold):
     
     # Zero out pixels below the threshold
     heatmap[heatmap <= threshold] = 0
     # Return the image after applying threshold
     return heatmap
-
-
-
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+```
+Here is the code using scipy.ndimage.measurements.label() on the images being processed:
+```
+def process_image(img):
+    out_img, heat_map = find_cars(img, scale)
+    heat_map = apply_threshold(heat_map, 0)
+    labels = label(heat_map)
+    draw_img = draw_labeled_bboxes(np.copy(img), labels)
+    return draw_img
+```
 
 ### Here are some frames and their corresponding heatmaps:
 
 ![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
-
-
 
 ---
 
@@ -302,5 +292,10 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Overall, this is a good starting point in vehicle detection and tracking, however there are still more false positives to eliminate and the bounding boxes could be less jittery.
 
+Improvements
+
+Adjust scale to detect images further away.
+*Smoothing out the boxes in order to eliminate jittery bounding boxes.
+*I did develop a very basic YOLO solution that worked reasonably well, with better accuracy and less jitter, however this was at deadline time not ready to be included in this Project submission. My intuition is that a Deep Neural Network, implementing YOLO v3 should be a faster solution, due to the fact that You Only Look Once.
