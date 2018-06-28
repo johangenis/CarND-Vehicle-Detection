@@ -57,8 +57,8 @@ def get_hog_features(img,
                        visualise=vis, 
                        feature_vector=feature_vec)
         return features
-    ```
-
+```        
+        
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
 ![alt text][image1]
