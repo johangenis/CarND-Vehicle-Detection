@@ -230,7 +230,8 @@ visualize(fig,5,2,images,titles)
 
 Using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, a reasonable result was produced.  Some example images of the results before a heat map and thersholding was introduced:
 
-![alt text][image4]
+![alt text][image3]
+
 ---
 
 ### Video Implementation
