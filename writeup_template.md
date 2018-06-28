@@ -10,7 +10,7 @@ Goals / steps of this project:
 
 [//]: # (Image References)
 [image1]: ./carNotCar.png
-[image2]: ./examples/HOG_example.jpg
+[image2]: ./cspaceHOG.png
 [image3]: ./examples/sliding_windows.jpg
 [image4]: ./examples/sliding_window.jpg
 [image5]: ./examples/bboxes_and_heat.png
