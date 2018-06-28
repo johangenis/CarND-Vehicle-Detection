@@ -150,12 +150,15 @@ svc.fit(X_train, y_train)
 print(round(time.time() -t, 2 ), "Seconds to train SVC...")
 
 print('Test accuracy of SVC = ', round(svc.score(X_test, y_test), 4))
+
+
+221.21797585487366 Seconds to compute features...
+
+Using :  9 Orientations, 8 Pixels per cell 2 Cells per block 32 Histogram bins, and (32, 32) Spatial sampling
+Feature vector length :  8460
+83.67 Seconds to train SVC...
+Test accuracy of SVC =  0.9955
 ```
-`221.21797585487366 Seconds to compute features...`
-`Using :  9 Orientations, 8 Pixels per cell 2 Cells per block 32 Histogram bins, and (32, 32) Spatial sampling`
-`Feature vector length :  8460`
-`83.67 Seconds to train SVC...`
-`Test accuracy of SVC =  0.9955`
 
 ### Sliding Window Search
 
@@ -207,8 +210,8 @@ for img_src in example_images:
     
 fig = plt.figure(figsize=(12,18), dpi=300)
 visualize(fig,5,2,images,titles)
-```
-`4.681360960006714 seconds to process one image searching 273  windows
+
+4.681360960006714 seconds to process one image searching 273  windows
 0.0 1.0
 2.67714786529541 seconds to process one image searching 273  windows
 0.0 1.0
@@ -218,9 +221,8 @@ visualize(fig,5,2,images,titles)
 0.0 1.0
 4.27184796333313 seconds to process one image searching 273  windows
 0.0 1.0
-2.8198859691619873 seconds to process one image searching 273  windows`
-
-
+2.8198859691619873 seconds to process one image searching 273  windows
+```
 
 ![alt text][image3]
 
@@ -235,7 +237,7 @@ Using YCrCb 3-channel HOG features plus spatially binned color and histograms of
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
-Here's a [link to my video result](./project_video_output.mp4)
+Here's a [link to my video result](./test_video_0.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
