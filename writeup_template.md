@@ -297,5 +297,5 @@ Overall, this is a good starting point in vehicle detection and tracking, howeve
 Improvements
 
 Adjust scale to detect images further away.
-*Smoothing out the boxes in order to eliminate jittery bounding boxes.
-*I did develop a very basic YOLO solution that worked reasonably well, with better accuracy and less jitter, however this was at deadline time not ready to be included in this Project submission. My intuition is that a Deep Neural Network, implementing YOLO v3 should be a faster solution, due to the fact that You Only Look Once.
+* Smoothing out the boxes in order to eliminate jittery bounding boxes.
+* I did develop a very basic YOLO solution that worked reasonably well, with better accuracy and less jitter, however this was at deadline time not ready to be included in this Project submission. My intuition is that a Deep Neural Network, implementing YOLO v3 should be a faster solution, due to the fact that You Only Look Once.
